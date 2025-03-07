@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+{% load static  %}
+
+{% block body %}
+ <div class="container">
+ <div class="row">
+
+     <div class="col-md-12">
+     <h3>shopping cart</h3>
+      <table class="table" class="success-bg">
+          <tr>
+              <th>product</th>
+              <th>quantity</th>
+              <th>price</th>
+              <th>item Total</th>
+               <th>update</th>
+          </tr>
+          {% for item in cart_items %}
+          <tr>
+              <td>{{  item.product.name  }}</td>
+              <td>{{  item.quantity  }}</td>
+              <td>{{  item.product.price  }}</td>
+              <td><img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="50"></td>
+              <td>{{  item.totalCost  }}</td>
+              <td>{{ item.total_price }}</td>
+               <td>
+               <a href="{% url 'remove_from_cart' item.product.id %}" class="delete">
+                   <i class="fa fa-trash"> Delete</i>
+               </a>
+               </td>
+          </tr>
+          {% endfor %}
+          {% if cart_items %}
+          <tr>
+              <td class="table-active" colspan="2">
+                 Total price
+              </td>
+              <td class="table-active" colspan="2">
+                ksh: {{ total_price }}
+              </td>
+          </tr>
+                  {% else %}
+          <tr>
+              <td class="table-active" colspan="2">
+                  your cart is empty
+              </td>
+          </tr>
+          {% endif %}
+      </table>
+         <a href="{% url 'checkout' %}">
+    <button type="submit" class="btn btn-success justify-content: float-end;">
+        Proceed to Checkout
+    </button>
+</a>
+     </div>
+ </div>
+ </div>
+
+{% endblock %}

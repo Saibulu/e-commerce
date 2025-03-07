@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block body %}
+
+  <div class="container mt-5 border-black">
+    <div class="col-md-6 ms-auto bg-success-subtle">
+    <h2 class="text-center">Register form</h2>
+    <form  action="{% url 'register' %}" method="POST" class="row g-3 w-100">
+        {% csrf_token %}
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label mx-3">First Name</label>
+    <input  name="first_name"  type="text" class="form-control  mx-2">
+  </div>
+
+  <div class="col-md-6">
+  <label for="inputEmail4" class="form-label  mx-3">Last Name</label>
+  <input name="last_name" type="text" class="form-control  mx-2">
+  </div>
+
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label  mx-3">email</label>
+    <input  name="email" type="email" class="form-control  mx-2">
+  </div>
+
+   <div class="col-md-6">
+    <label for="inputEmail4" class="form-label  mx-3">user name</label>
+    <input  name="username" type="text" class="form-control  mx-2">
+  </div>
+
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label mx-3">password</label>
+    <input  name="password" type="text" class="form-control  mx-2">
+  </div>
+
+    <div class="col-md-6">
+    <label for="inputEmail4" class="form-label mx-3">confirm password</label>
+    <input  name="confirm_password" type="text" class="form-control  mx-2">
+  </div>
+
+  <div class="col-6 mb-3 ">
+    <button type="submit" class="btn btn-warning mx-3"><h2>Register</h2></button>
+  </div>
+    <div class="col-6 mb-3">
+        <a href="{% url 'login_user' %}" class="btn btn-warning mx-3"><h2>Login</h2></a>
+    </div>
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+
+</form>
+    </div>
+  </div>
+{%endblock%}

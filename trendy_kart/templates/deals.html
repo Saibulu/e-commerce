@@ -1,0 +1,235 @@
+{% extends 'layout.html' %}
+{% load static  %}
+
+{% block body %}
+
+    	<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title">Electronic Accessories</h3>
+							<div class="section-nav">
+								<ul class="section-tab-nav tab-nav">
+                                    <li class="active"><a id="Showall" href="#">All</a></li>
+									<li><a data-toggle="tab" href="#tab1">Computer accessories</a></li>
+									<li><a data-toggle="tab" href="#tab2">Mobile accessories</a></li>
+									<li><a data-toggle="tab" href="#tab3">Smart home devices</a></li>
+									<li><a data-toggle="tab" href="#tab4">DIY components</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /section title -->
+
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+
+								<!-- tab -->
+								<div id="tab1" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+
+                                        {% for computer  in computers %}
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="{{ computer.image.url }}" alt="" class="img-fluid">
+												<div class="product-label">
+													<span class="sale">-30%</span>
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{computer.category}}</p>
+												<h3 class="product-name"><a href="#">{{computer.name}}</a></h3>
+												<h4 class="product-price">{{product.price}} <del class="product-old-price">{{computer.old_price}}</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												</div>
+											</div>
+
+											<div class="add-to-cart">
+												<form method="POST" action="{% url 'add_to_cart' computer.id %}">
+                                                     {% csrf_token %}
+                                                     <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                </form>
+											</div>
+										</div>
+                                            <!-- /product -->
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            <!-- /tab -->
+
+                                <!-- tab -->
+								<div id="tab2" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+
+                                        {% for mobile  in mobiles %}
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="{{ mobile.image.url }}" alt="" class="img-fluid">
+												<div class="product-label">
+													<span class="sale">-30%</span>
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{mobile.category}}</p>
+												<h3 class="product-name"><a href="#">{{mobile.name}}</a></h3>
+												<h4 class="product-price">{{mobile.price}} <del class="product-old-price">{{mobile.old_price}}</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												</div>
+											</div>
+
+											<div class="add-to-cart">
+												<form method="POST" action="{% url 'add_to_cart' mobile.id %}">
+                                                     {% csrf_token %}
+                                                     <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                </form>
+											</div>
+										</div>
+                                            <!-- /product -->
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            <!-- /tab -->
+
+
+                               <!-- tab -->
+								<div id="tab3" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+
+                                        {% for smart in smarts %}
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="{{ smart.image.url }}" alt="" class="img-fluid">
+												<div class="product-label">
+													<span class="sale">-30%</span>
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{smart.category}}</p>
+												<h3 class="product-name"><a href="#">{{smart.name}}</a></h3>
+												<h4 class="product-price">{{smart.price}} <del class="product-old-price">{{smart.old_price}}</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												</div>
+											</div>
+
+											<div class="add-to-cart">
+												<form method="POST" action="{% url 'add_to_cart' smart.id %}">
+                                                     {% csrf_token %}
+                                                     <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                </form>
+											</div>
+										</div>
+                                            <!-- /product -->
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            <!-- /tab -->
+
+                                <!-- tab -->
+								<div id="tab4" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+
+                                        {% for diy  in Diys %}
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="{{ diy.image.url }}" alt="" class="img-fluid">
+												<div class="product-label">
+													<span class="sale">-30%</span>
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{diy.category}}</p>
+												<h3 class="product-name"><a href="#">{{diy.name}}</a></h3>
+												<h4 class="product-price">{{diy.price}} <del class="product-old-price">{{diy.old_price}}</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												</div>
+											</div>
+
+											<div class="add-to-cart">
+												<form method="POST" action="{% url 'add_to_cart' diy.id %}">
+                                                     {% csrf_token %}
+                                                     <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                </form>
+											</div>
+										</div>
+                                            <!-- /product -->
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            <!-- /tab -->
+
+                                    </div>
+                                </div>
+
+										<!-- /product -->
+									</div>
+									<div id="slick-nav-2" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- /Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+    
+{% endblock %}

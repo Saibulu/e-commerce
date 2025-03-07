@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block body %}
+
+
+<div class="container border-black mt-5">
+     <div class="col-md-6 ms-auto bg-success-subtle">
+          <h3 class="text-center">login form</h3>
+          <form action="{% url 'login_user' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+             <div class="row mb-3">
+            <label for="username" class="col-sm-2 col-form-label mx-5">Username</label>
+              <input  name="username" type="text" class="form-control mx-5 w-75" id="">
+            </div>
+              <div class="row mb-3">
+            <label for="inputPassword3" class="col-sm-2 col-form-label mx-5">Password</label>
+              <input  name="password" type="password" class="form-control mx-5 w-75 " id="">
+              </div>
+              <div class="mx-4">
+              <button type="submit" class="btn btn-warning mx-3  ">Log In</button>
+               </div>
+          </form>
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+          {% endblock %}
+  </div>
+</div>

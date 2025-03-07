@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block body %}
+    <div class="container">
+        <h2>Search products "{{ query }}" {% if selected_category %} in "{{ selected_category }}"{% endif %}</h2>
+
+        <p>Results: {{ results }}</p>
+
+        {% if results %}
+            <div class="row">
+                {% for product in results %}
+                    <div class="col-md-4">
+                        <div class="product">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                            <h3>{{ product.name }}</h3>
+                            <p>Price: ${{ product.price }}</p>
+                            <p>Old Price: ${{ product.old_price }}</p>
+                            <p>Category: {{ product.category }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No product found</p>
+        {% endif %}
+    </div>
+{% endblock %}
