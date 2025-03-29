@@ -1,0 +1,889 @@
+
+{% extends 'layout.html' %}
+
+{% load static  %}
+
+{% block body %}
+
+ {% for message in messages  %}
+  <div class="alert alert {{ message.tags }} alert-dismissible fade show" role="alert">
+  <strong>message: </strong> {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{%endfor%}
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- shop -->
+					<div class="col-md-4 col-xs-6">
+						<div class="shop">
+							<div class="shop-img">
+								<img src="{% static '/img/L1.jpg' %}" alt="">
+							</div>
+							<div class="shop-body">
+								<h3>Laptop<br>Collection</h3>
+								<a href="{% url 'product' %}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- /shop -->
+
+					<!-- shop -->
+					<div class="col-md-4 col-xs-6">
+						<div class="shop">
+							<div class="shop-img">
+								<img src="{% static '/img/shop03.png' %}" alt="">
+							</div>
+							<div class="shop-body">
+								<h3>Accessories<br>Collection</h3>
+								<a href="{% url 'product' %}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- /shop -->
+
+					<!-- shop -->
+					<div class="col-md-4 col-xs-6">
+						<div class="shop">
+							<div class="shop-img">
+								<img src="{% static '/img/shop02.png' %}" alt="">
+							</div>
+							<div class="shop-body">
+								<h3>Cameras<br>Collection</h3>
+								<a href="{% url 'product' %}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- /shop -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title">New Products</h3>
+							<div class="section-nav">
+								<ul class="section-tab-nav tab-nav">
+									<li class="active"><a id="Showall" href="#">All</a></li>
+                                    <li><a data-toggle="tab" href="#tab1">Laptops</a></li>
+									<li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
+									<li><a data-toggle="tab" href="#tab3">Cameras</a></li>
+									<li><a data-toggle="tab" href="#tab4">Accessories</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /section title -->
+
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+                    <div class="class"></div>
+						<div class="row">
+							<div class="products-tabs">
+						<!-- tab -->
+<div id="tab1" class="tab-pane active">
+    <div class="products-slick" data-nav="#slick-nav-1">
+        {% for product in products %}
+        <!-- product -->
+        <div class="product">
+            <div class="product-img">
+                <img src="{{ product.image.url }}" alt="" class="img-fluid">
+                <div class="product-label">
+                    <span class="sale">-30%</span>
+                    <span class="new">NEW</span>
+                </div>
+            </div>
+            <div class="product-body">
+                <p class="product-category">{{ product.category }}</p>
+                <h3 class="product-name"><a href="#">{{ product.name }}</a></h3>
+                <h4 class="product-price">{{ product.price }} <del class="product-old-price">{{ product.old_price }}</del></h4>
+                <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="product-btns">
+                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                    </div>
+                <div class="add-to-cart">
+                    <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /product -->
+        {% endfor %}
+    </div>
+</div>
+<!-- /tab -->
+
+<!-- tab -->
+<div id="tab2" class="tab-pane active">
+    <div class="products-slick" data-nav="#slick-nav-2">
+        {% for phone in phones %}
+        <!-- product -->
+        <div class="product">
+            <div class="product-img">
+                <img src="{{ phone.image.url }}" alt="" class="img-fluid">
+                <div class="product-label">
+                    <span class="sale">-30%</span>
+                    <span class="new">NEW</span>
+                </div>
+            </div>
+            <div class="product-body">
+                <p class="product-category">{{ phone.category }}</p>
+                <h3 class="product-name"><a href="#">{{ phone.name }}</a></h3>
+                <h4 class="product-price">{{ phone.price }} <del class="product-old-price">{{ phone.old_price }}</del></h4>
+                <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="product-btns">
+                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                </div>
+                <div class="add-to-cart">
+                    <form method="POST" action="{% url 'add_to_cart' phone.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /product -->
+        {% endfor %}
+    </div>
+</div>
+<!-- /tab -->
+
+<!-- tab -->
+<div id="tab3" class="tab-pane active">
+    <div class="products-slick" data-nav="#slick-nav-3">
+        {% for cameras in camera %}
+        <!-- product -->
+        <div class="product">
+            <div class="product-img">
+                <img src="{{ cameras.image.url }}" alt="" class="img-fluid">
+                <div class="product-label">
+                    <span class="sale">-30%</span>
+                    <span class="new">NEW</span>
+                </div>
+            </div>
+            <div class="product-body">
+                <p class="product-category">{{ cameras.category }}</p>
+                <h3 class="product-name"><a href="#">{{ cameras.name }}</a></h3>
+                <h4 class="product-price">{{ cameras.price }} <del class="product-old-price">{{ cameras.old_price }}</del></h4>
+                <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="product-btns">
+                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                </div>
+                <div class="add-to-cart">
+                    <form method="POST" action="{% url 'add_to_cart' cameras.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /product -->
+        {% endfor %}
+    </div>
+</div>
+<!-- /tab -->
+
+<!-- tab -->
+<div id="tab4" class="tab-pane active">
+    <div class="products-slick" data-nav="#slick-nav-4">
+        {% for accessory in accessories %}
+        <!-- product -->
+        <div class="product">
+            <div class="product-img">
+                <img src="{{ accessory.image.url }}" alt="" class="img-fluid">
+                <div class="product-label">
+                    <span class="sale">-30%</span>
+                    <span class="new">NEW</span>
+                </div>
+            </div>
+            <div class="product-body">
+                <p class="product-category">{{ accessory.category }}</p>
+                <h3 class="product-name"><a href="#">{{ accessory.name }}</a></h3>
+                <h4 class="product-price">{{ accessory.price }} <del class="product-old-price">{{ accessory.old_price }}</del></h4>
+                <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="product-btns">
+                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                </div>
+                <div class="add-to-cart">
+                    <form method="POST" action="{% url 'add_to_cart' accessory.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /product -->
+        {% endfor %}
+    </div>
+</div>
+<!-- /tab -->
+
+							</div>
+						</div>
+					</div>
+					<!-- Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- HOT DEAL SECTION -->
+		<div id="hot-deal" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="hot-deal">
+							<ul class="hot-deal-countdown">
+								<li>
+									<div>
+										<h3>02</h3>
+										<span>Days</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>10</h3>
+										<span>Hours</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>34</h3>
+										<span>Mins</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>60</h3>
+										<span>Secs</span>
+									</div>
+								</li>
+							</ul>
+							<h2 class="text-uppercase">hot deal this week</h2>
+							<p>New Collection Up to 50% OFF</p>
+							<a class="primary-btn cta-btn" href="{% url 'product' %}">Shop now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /HOT DEAL SECTION -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title">Top selling</h3>
+							<div class="section-nav">
+								<ul class="section-tab-nav tab-nav">
+                                    <li class="active"><a id="Showall" href="#">All</a></li>
+									<li><a data-toggle="tab" href="#tab5">TVs</a></li>
+									<li><a data-toggle="tab" href="#tab6">Printers</a></li>
+									<li><a data-toggle="tab" href="#tab7">Refrigerators</a></li>
+									<li><a data-toggle="tab" href="#tab8">Microwave</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /section title -->
+
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab5" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+
+                                        {% for tvs in tv %}
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="{{ tvs.image.url }}" alt="" class="img-fluid">
+												<div class="product-label">
+													<span class="sale">-30%</span>
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{tvs.category}}</p>
+												<h3 class="product-name"><a href="#">{{tvs.name}}</a></h3>
+												<h4 class="product-price">{{tvs.price}} <del class="product-old-price">{{tvs.old_price}}</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												</div>
+											</div>
+
+											<div class="add-to-cart">
+												<form method="POST" action="{% url 'add_to_cart' tvs.id %}">
+                                                     {% csrf_token %}
+                                                     <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                </form>
+											</div>
+										</div>
+                                            <!-- /product -->
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            <!-- /tab -->
+
+							<!-- tab -->
+								<div id="tab6" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+
+                                        {% for printer in printers %}
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="{{ printer.image.url }}" alt="" class="img-fluid">
+												<div class="product-label">
+													<span class="sale">-30%</span>
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{printer.category}}</p>
+												<h3 class="product-name"><a href="#">{{printer.name}}</a></h3>
+												<h4 class="product-price">{{printer.price}} <del class="product-old-price">{{printer.old_price}}</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												</div>
+											</div>
+											<div class="add-to-cart">
+												<form method="POST" action="{% url 'add_to_cart' printer.id %}">
+                                                     {% csrf_token %}
+                                                     <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                </form>
+											</div>
+										</div>
+                                          <!-- /product -->
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            <!-- /tab -->
+
+							<!-- tab -->
+								<div id="tab7" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+                                        {% for refrigerator in refrigerators %}
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="{{ refrigerator.image.url }}" alt="" class="img-fluid">
+												<div class="product-label">
+													<span class="sale">-30%</span>
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{refrigerator.category}}</p>
+												<h3 class="product-name"><a href="#">{{refrigerator.name}}</a></h3>
+												<h4 class="product-price">{{refrigerator.price}} <del class="product-old-price">{{refrigerator.old_price}}</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												</div>
+											</div>
+											<div class="add-to-cart">
+												<form method="POST" action="{% url 'add_to_cart' refrigerator.id %}">
+                                                     {% csrf_token %}
+                                                     <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                </form>
+											</div>
+										</div>
+                                         <!-- /product -->
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            <!-- /tab -->
+
+							<!-- tab -->
+								<div id="tab8" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+
+                                        {% for microwave in microwaves %}
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="{{ microwave.image.url }}" alt="" class="img-fluid">
+												<div class="product-label">
+													<span class="sale">-30%</span>
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{microwave.category}}</p>
+												<h3 class="product-name"><a href="#">{{microwave.name}}</a></h3>
+												<h4 class="product-price">{{microwave.price}} <del class="product-old-price">{{microwave.old_price}}</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												</div>
+											</div>
+
+											<div class="add-to-cart">
+												<form method="POST" action="{% url 'add_to_cart' microwave.id %}">
+                                                     {% csrf_token %}
+                                                     <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                </form>
+											</div>
+										</div>
+                                            <!-- /product -->
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            <!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- /Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-4 col-xs-6">
+						<div class="section-title">
+							<h4 class="title">Top selling</h4>
+							<div class="section-nav">
+								<div id="slick-nav-3" class="products-slick-nav"></div>
+							</div>
+						</div>
+
+						<div class="products-widget-slick" data-nav="#slick-nav-3">
+							<div>
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product07.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product08.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product09.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- product widget -->
+							</div>
+
+							<div>
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product01.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product02.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product03.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- product widget -->
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-xs-6">
+						<div class="section-title">
+							<h4 class="title">Top selling</h4>
+							<div class="section-nav">
+								<div id="slick-nav-4" class="products-slick-nav"></div>
+							</div>
+						</div>
+
+						<div class="products-widget-slick" data-nav="#slick-nav-4">
+							<div>
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product04.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product05.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product06.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- product widget -->
+							</div>
+
+							<div>
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product07.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product08.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product09.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- product widget -->
+							</div>
+						</div>
+					</div>
+
+					<div class="clearfix visible-sm visible-xs"></div>
+
+					<div class="col-md-4 col-xs-6">
+						<div class="section-title">
+							<h4 class="title">Top selling</h4>
+							<div class="section-nav">
+								<div id="slick-nav-5" class="products-slick-nav"></div>
+							</div>
+						</div>
+
+						<div class="products-widget-slick" data-nav="#slick-nav-5">
+							<div>
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product01.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product02.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product03.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- product widget -->
+							</div>
+
+							<div>
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product04.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product05.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="{% static '/img/product06.png' %}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+								</div>
+								<!-- product widget -->
+							</div>
+						</div>
+					</div>
+                    		</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- NEWSLETTER -->
+		<div id="newsletter" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="newsletter">
+							<p>Sign Up for the <strong>NEWSLETTER</strong></p>
+
+                          {% if success_message %}
+                      <div class="container mt-3">
+                        <div class="alert alert-success" role="alert">
+                          {{ success_message }}
+                        </div>
+                      </div>
+                             {% endif %}
+
+							<form action="{% url 'newsletter_subscriptions' %}" method="post">
+                                {% csrf_token %}
+                                <div class="input-group bg-blue">
+								<input type="email" id="email" name="email"  placeholder="Enter Your Email">
+								<button type="submit"><i class="btn btn-primary"></i> Subscribe</button>
+                                </div>
+							</form>
+
+							<ul class="newsletter-follow">
+								<li>
+									<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+								</li>
+								<li>
+									<a href="https://x.com/home"><i class="fa fa-twitter"></i></a>
+								</li>
+								<li>
+									<a href="https://github.com/topics/login"><i class="fa fa-github"></i></a>
+								</li>
+								<li>
+									<a href="https://www.linkedin.com/company/login/"><i class="fa fa-linkedin"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /NEWSLETTER -->
+{% endblock %}
+
+
